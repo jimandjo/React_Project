@@ -7,8 +7,20 @@ const API = {
         return axios.get(baseURL);
     },
     createProduct: (newProduct) => {
-        return axios.put(baseURL, newProduct);
+        return axios.post(baseURL, newProduct);
+    },
+    getProductById: (id) => {
+        return axios.get(`${baseURL}/${id}`)
+    },
+    UpdateProduct: (id, updateProduct) => {
+        return axios.put(`${baseURL}/${id}`, updateProduct);
+    },
+    deleteProduct: (id) => {
+        return axios.delete(`${baseURL}/${id}`);
     }
+
+
+
 }
 
 export default API;

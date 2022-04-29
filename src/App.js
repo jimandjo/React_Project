@@ -1,22 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate  } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Home from './Home'
 import About from './About';
 import Products from './Products';
 import Welcome from './Welcome';
 import API from './API';
+import DetailProduct from './detailProduct';
+import EditProduct from './editProduct';
+import ProductContext from './ProductContext';
+import selections from './storeData.json'
 
 function App() {
 
     const [ allProducts, setAllProducts ] = useState([]);
     const [ newProduct, setNewProduct ] = useState({
-      id: 6,
+      id: "",
       itemName: "",
       description: "",
       hot: Boolean,
       price: 3.00,
       url: ""
-    })
+    });
+
+    
 
     useEffect(() => {
       getProducts();
@@ -65,21 +72,42 @@ const handleUrlChange = (e) => {
     })  
   }
 
+  const updateProduct = (id) => {
+    API.UpdateProduct(id, newProduct).then(res => {
+      console.log(res);
+     
+    })
+  }
+
+  const handleDelete = (id) => {
+      API.deleteProduct(id).then(res => {
+      });
+  }
+
+  
+  
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} >
-          <Route index element={<Welcome />}/>
-          <Route path="about" element={<About />} />
-        <Route path="products" element={<Products productData={allProducts} 
-            handleNameChange={handleNameChange}
-            handleDescriptionChange={handleDescriptionChange} handleBoxChange={handleBoxChange}
-            handlePriceChange={handlePriceChange} handleUrlChange={handleUrlChange}
-            handleSubmit={handleSubmit}
-          />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <ProductContext.Provider value={ {selections: selections} }>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} >
+            <Route index element={<Welcome />}/>
+            <Route path="about" element={<About />} />
+          <Route path="products" element={<Products productData={allProducts} 
+                handleNameChange={handleNameChange} 
+                handleDescriptionChange={handleDescriptionChange} 
+                handleBoxChange={handleBoxChange} 
+                handlePriceChange={handlePriceChange} 
+                handleUrlChange={handleUrlChange} 
+                handleSubmit={handleSubmit}
+                handleDelete={handleDelete} />} />
+          </Route>
+          <Route path="detailProduct/:id" element={<DetailProduct handleDelete={handleDelete} />} />
+          <Route path="updateProduct/:id" element={<EditProduct handleNameChange={handleNameChange} handleDescriptionChange={handleDescriptionChange} handleBoxChange={handleBoxChange} handlePriceChange={handlePriceChange} handleUrlChange={handleUrlChange} updateProduct={updateProduct} />} />
+        </Routes>
+      </BrowserRouter>
+    </ProductContext.Provider>
   )
 }
 

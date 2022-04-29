@@ -1,14 +1,6 @@
 {
   "selections": [
     {
-      "id": 1,
-      "itemName": "Pour Over",
-      "description": "Pour over coffee is drip coffee made by pouring water over coffee grounds in a filter. Drip coffee is made using a percolator coffee machine, whereas pour over is made by a human. Controlling the pouring over the water helps to bring out the nuances in the flavor of the coffee beans.",
-      "hot": true,
-      "price": 3,
-      "url": ""
-    },
-    {
       "id": 2,
       "itemName": "French Press",
       "description": "The French press is a small pitcher with a plunger that’s used to brew coffee and other drinks.",
@@ -28,22 +20,29 @@
       "id": 4,
       "itemName": "Machiato",
       "description": "A caffè macchiato or espresso macchiato is a shot of espresso that’s topped with frothed milk.",
-      "hot": true,
-      "price": 2.75,
+      "hot": "on",
+      "price": "2.75",
       "url": ""
     },
     {
       "id": 5,
       "itemName": "Cortado",
       "description": "The Cortado is an espresso drink of equal parts espresso and steamed milk. It's always the same volume: one doubleshot of espresso and 2 ounces milk.",
-      "hot": true,
-      "price": 3.55,
+      "hot": "on",
+      "price": "3",
       "url": ""
     },
     {
       "id": 6,
-      "itemName": "Apple cappacino",
+      "itemName": "Apple Cappacino",
       "description": "Fresh apple with espresso and cream",
+      "price": "6",
+      "url": ""
+    },
+    {
+      "id": 7,
+      "itemName": "Hammered",
+      "description": "Dark, Bold, with twice the Caffine.",
       "hot": "on",
       "price": "6",
       "url": ""
