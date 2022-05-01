@@ -1,8 +1,11 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:3001/selections";
+
+const baseURL = "http://localhost:3007/products";
 
 const API = {
+
+   
     getAll: () => {
         return axios.get(baseURL);
     },
@@ -19,7 +22,7 @@ const API = {
         return axios.delete(`${baseURL}/${id}`);
     }
 
-
+   
 
 }
 

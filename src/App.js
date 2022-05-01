@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate  } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route  } from 'react-router-dom';
 import Home from './Home'
 import About from './About';
 import Products from './Products';
@@ -8,8 +7,7 @@ import Welcome from './Welcome';
 import API from './API';
 import DetailProduct from './detailProduct';
 import EditProduct from './editProduct';
-import ProductContext from './ProductContext';
-import selections from './storeData.json'
+import CreateProduct from './createProduct';
 
 function App() {
 
@@ -68,13 +66,13 @@ const handleUrlChange = (e) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     API.createProduct(newProduct).then(res => {
-      console.log(res);
+      
     })  
   }
 
   const updateProduct = (id) => {
     API.UpdateProduct(id, newProduct).then(res => {
-      console.log(res);
+      
      
     })
   }
@@ -88,7 +86,7 @@ const handleUrlChange = (e) => {
   
 
   return (
-    <ProductContext.Provider value={ {selections: selections} }>
+    
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} >
@@ -103,11 +101,12 @@ const handleUrlChange = (e) => {
                 handleSubmit={handleSubmit}
                 handleDelete={handleDelete} />} />
           </Route>
+          <Route path="createProduct" element={<CreateProduct />} />
           <Route path="detailProduct/:id" element={<DetailProduct handleDelete={handleDelete} />} />
           <Route path="updateProduct/:id" element={<EditProduct handleNameChange={handleNameChange} handleDescriptionChange={handleDescriptionChange} handleBoxChange={handleBoxChange} handlePriceChange={handlePriceChange} handleUrlChange={handleUrlChange} updateProduct={updateProduct} />} />
         </Routes>
       </BrowserRouter>
-    </ProductContext.Provider>
+   
   )
 }
 
